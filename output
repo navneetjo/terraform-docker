@@ -1,0 +1,46 @@
+# module.container.docker_container.container_id:
+resource "docker_container" "container_id" {
+    attach           = false
+    gateway          = "172.17.0.1"
+    id               = "35ff17eb4392a10c446618fdeb26703a0ce197468bbea19965130e5567b5265d"
+    image            = "sha256:5087ec25083ca2fcff87e1ab71165080126af5cbfcc146d214fce7437f93d50e"
+    ip_address       = "172.17.0.2"
+    ip_prefix_length = 16
+    log_driver       = "json-file"
+    logs             = false
+    must_run         = true
+    name             = "blog"
+    network_data     = [
+        {
+            gateway          = "172.17.0.1"
+            ip_address       = "172.17.0.2"
+            ip_prefix_length = 16
+            network_name     = "bridge"
+        },
+    ]
+    read_only        = false
+    restart          = "no"
+    rm               = false
+    start            = true
+
+    ports {
+        external = 8080
+        internal = 2368
+        ip       = "0.0.0.0"
+        protocol = "tcp"
+    }
+}
+
+
+# module.image.docker_image.image_id:
+resource "docker_image" "image_id" {
+    id     = "sha256:5087ec25083ca2fcff87e1ab71165080126af5cbfcc146d214fce7437f93d50eghost:latest"
+    latest = "sha256:5087ec25083ca2fcff87e1ab71165080126af5cbfcc146d214fce7437f93d50e"
+    name   = "ghost:latest"
+}
+
+
+Outputs:
+
+Container_Name = "docker_container.container_id.name"
+IP_Address = "docker_container.container_id.ip_address"
