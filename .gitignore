@@ -1,0 +1,3 @@
+# following folders will excludes from repository
+.terraform
+.git
