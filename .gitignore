@@ -1,4 +1,4 @@
 # following folders will excludes from repository
 .terraform
 .idea
-.git
+.git*
